@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import axios from "axios";
 const BASE_URL = import.meta.env.VITE_REACT_APP_BASE_URL;
 const getUsers = async () =>{
@@ -27,4 +28,14 @@ const createUser = async (d) =>{
     }
 }
 
-export {getUsers, createUser, getSingleUser}
+
+const deleteUser = async (id) =>{
+    try {
+        const {data} = await axios.delete(BASE_URL+`api/users/${id}`)
+        console.log(data)
+    } catch (error) {
+        return error;
+    }
+}
+
+export {getUsers, createUser, getSingleUser, deleteUser}

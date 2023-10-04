@@ -9,6 +9,7 @@ import './index.css'
 import Home from './Pages/Home/Home';
 import Users from './Pages/Users/Users';
 import CreateUsers from './Pages/CreateUsers/CreateUsers';
+import SingleUser from './Pages/SingleUser/SingleUser';
 
 
 
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: "/users",
         element: <Users/>
+      },
+      {
+        path: "/users/:userId",
+        element: <SingleUser/>,
       },
       {
         path: "/users/create",

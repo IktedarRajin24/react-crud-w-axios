@@ -10,22 +10,8 @@ import { createUser } from '../../Services/usersApi';
 const CreateUsers = () => {
     const form = useForm()
     const {register, control, handleSubmit, getValues} = form
-    const [values, setValues] = useState({
-        id: '',
-        firstname: '',
-        lastname: '',
-        email: '',
-        avatar: ''
-    })
-
     const onSubmit = (data)=>{
-        // console.log(data)
-    }
-
-    const submitUser = (e) =>{
-        e.preventDefault()
-        const values = getValues(["id", "fname", "lname", "email", "image"]);
-        console.log(values)
+        createUser(data)
     }
     return (
         <div className='w-11/12 mx-auto border-2 border-slate-300 mt-10 px-5 py-10'>
@@ -37,11 +23,11 @@ const CreateUsers = () => {
                 </div>
                 <div className='w-8/12 mx-auto flex justify-around items-center mb-2'>
                     <label htmlFor="fname" className='w-1/2'>First Name:</label>
-                    <input type="text" id='fname' className='w-3/4 bg-slate-200 border-slate-400 border-2 rounded-md p-1' {...register('fname')}/>
+                    <input type="text" id='fname' className='w-3/4 bg-slate-200 border-slate-400 border-2 rounded-md p-1' {...register('first_name')}/>
                 </div>
                 <div className='w-8/12 mx-auto flex justify-around items-center mb-2'>
                     <label htmlFor="lname" className='w-1/2'>Last Name:</label>
-                    <input type="text" id='lname' className='w-3/4 bg-slate-200 border-slate-400 border-2 rounded-md p-1' {...register('lname')}/>
+                    <input type="text" id='lname' className='w-3/4 bg-slate-200 border-slate-400 border-2 rounded-md p-1' {...register('last_name')}/>
                 </div>
                 <div className='w-8/12 mx-auto flex justify-around items-center mb-2'>
                     <label htmlFor="email" className='w-1/2'>Email</label>
@@ -49,10 +35,10 @@ const CreateUsers = () => {
                 </div>
                 <div className='w-8/12 mx-auto mb-5'>
                     <label htmlFor="image" className='w-3/4'></label>
-                    <input type="file" id='image' {...register('image')}/>
+                    <input type="file" id='image' {...register('avatar')}/>
                 </div>
                 <div className='w-8/12 mx-auto'>
-                    <button onClick={submitUser} className='bg-green-500 w-1/4 me-5 rounded-md text-white px-1 py-2'>Submit</button>
+                    <input type='submit' value='Submit' className='bg-green-500 w-1/4 me-5 rounded-md text-white px-1 py-2 cursor-pointer'/>
                     <Link to='/users'>
                         <button className='bg-blue-500 w-1/4 me-5 rounded-md text-white px-1 py-2'>Back</button>
                     </Link>

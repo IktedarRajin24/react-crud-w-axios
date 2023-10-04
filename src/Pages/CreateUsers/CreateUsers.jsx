@@ -5,13 +5,12 @@ import { Link } from 'react-router-dom';
 import { DevTool } from "@hookform/devtools";
 import { createUser } from '../../Services/usersApi';
 
-
-
 const CreateUsers = () => {
     const form = useForm()
     const {register, control, handleSubmit, getValues} = form
     const onSubmit = (data)=>{
-        createUser(data)
+        createUser(data);
+        
     }
     return (
         <div className='w-11/12 mx-auto border-2 border-slate-300 mt-10 px-5 py-10'>

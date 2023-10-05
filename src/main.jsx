@@ -13,6 +13,8 @@ import SingleUser from './Pages/SingleUser/SingleUser';
 import EditUser from './Pages/EditUser/EditUser';
 import Todos from './Pages/Todos/Todos';
 import Todo from './Pages/Todo/Todo';
+import CreateTodo from './Pages/CreateTodo/CreateTodo';
+import EditTodo from './Pages/EditTodo/EditTodo';
 
 
 
@@ -40,6 +42,14 @@ const router = createBrowserRouter([
       {
         path: "/todos",
         element: <Todos/>
+      },
+      {
+        path: "/todos/create",
+        element: <CreateTodo/>
+      },
+      {
+        path: "/todos/edit/:todoId",
+        element: <EditTodo/>
       },
       {
         path: "/todos/:todoId",

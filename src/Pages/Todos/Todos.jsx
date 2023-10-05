@@ -1,18 +1,24 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
-import { getTodos } from '../../Services/todosApi';
+import { deleteTodo, getTodos } from '../../Services/todosApi';
 import { Link } from 'react-router-dom';
 
 const Todos = () => {
-    const {data, isLoading} = useQuery('todos', ()=>getTodos());
     const [todos, setTodos] = useState([]);
+    const {data, isLoading} = useQuery('todos', ()=>getTodos());
     useEffect(()=>{
         data && setTodos(data.data.data)
     }, [data])
+
+    const handleDelete = (id) =>{
+        const newList = todos && todos.filter(todo => todo._id != id)
+        setTodos(newList)
+        deleteTodo(id)
+    }
     return (
         <div className='w-11/12 mx-auto mb-10'>
-                <Link className='flex justify-end'>
+                <Link to='/todos/create' className='flex justify-end'>
                     <button className='bg-green-600 text-white px-2 py-1 mt-10 w-1/12 rounded-md'>Add New <span className='font-extrabold'>+</span></button>
                 </Link>
                 <table className='w-full mx-auto border-2 border-slate-200 mt-5 '>
@@ -38,10 +44,10 @@ const Todos = () => {
                                 <Link to={`/todos/${todo._id}`}>
                                     <button className='bg-blue-400 text-white px-2 py-1  m-2 rounded-md'>View</button>
                                 </Link>
-                                <Link>
+                                <Link to={`/todos/edit/${todo._id}`}>
                                     <button className='bg-green-400 text-white px-2 py-1 m-2 rounded-md'>Edit</button>
                                 </Link>
-                                <button className='bg-red-400 text-white px-2 py-1 m-2 rounded-md'>Delete</button>
+                                <button onClick={()=> handleDelete(todo._id)}  className='bg-red-400 text-white px-2 py-1 m-2 rounded-md'>Delete</button>
 
                             </td>
 

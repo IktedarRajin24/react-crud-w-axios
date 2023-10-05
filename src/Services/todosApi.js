@@ -1,22 +1,51 @@
 import axios from "axios"
 const TODOS_URL = import.meta.env.VITE_REACT_APP_BASE_URL_TODOS;
 
-const getTodos = () =>{
+const getTodos = async () =>{
     try {
-        const response = axios.get(`${TODOS_URL}todos`)
+        const response = await axios.get(`${TODOS_URL}todos`)
+        console.log(response.data.data)
+        return response;
+        
+    } catch (error) {
+        return error;
+    }
+}
+
+const getTodoById = async (id) =>{
+    try {
+        const response = await axios.get(`${TODOS_URL}todos/${id}`)
         return response;
     } catch (error) {
         return error;
     }
 }
 
-const getTodoById = (id) =>{
+const addTodo = async (data) =>{
     try {
-        const response = axios.get(`${TODOS_URL}todos/${id}`)
+        const response = await axios.post(`${TODOS_URL}todos/`, data)
         return response;
     } catch (error) {
         return error;
     }
 }
 
-export {getTodos, getTodoById};
+const editTodo = async (data) =>{
+    try {
+        const response = await axios.put(`${TODOS_URL}todos/${data._id}`, data)
+        return response;
+    } catch (error) {
+        return error;
+    }
+}
+
+const deleteTodo = async (id) =>{
+    try {
+        const response = await axios.delete(`${TODOS_URL}todos/${id}`)
+        alert(response.message)
+    } catch (error) {
+        return error;
+    }
+}
+
+export {getTodos, getTodoById, deleteTodo, addTodo, editTodo};

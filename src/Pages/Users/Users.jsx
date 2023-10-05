@@ -45,7 +45,9 @@ const Users = () => {
                                 <Link to={`/users/${d.id}`}>
                                     <button className='bg-blue-400 text-white px-2 py-1  m-2 rounded-md'>View</button>
                                 </Link>
-                                <button className='bg-green-400 text-white px-2 py-1 m-2 rounded-md'>Edit</button>
+                                <Link>
+                                    <button className='bg-green-400 text-white px-2 py-1 m-2 rounded-md'>Edit</button>
+                                </Link>
                                 <button onClick={()=> handleDelete(d.id)} className='bg-red-400 text-white px-2 py-1 m-2 rounded-md'>Delete</button>
 
                             </td>

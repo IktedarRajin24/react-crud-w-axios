@@ -19,10 +19,10 @@ const getSingleUser = async (id) =>{
     }
 }
 
-const createUser = async (d) =>{
+const createUser = async (user) =>{
     try {
-        const {data} = await axios.post(BASE_URL+`api/users/`, d)
-        alert(`New user created! \nName: ${d.first_name + ' ' + d.last_name}\nEmail: ${d.email}\n`)
+        const {data} = await axios.post(BASE_URL+`api/users/`, user)
+        alert(`New user created! \nName: ${user.first_name + ' ' + user.last_name}\nEmail: ${user.email}\n`)
     } catch (error) {
         return error;
     }
@@ -38,4 +38,13 @@ const deleteUser = async (id) =>{
     }
 }
 
-export {getUsers, createUser, getSingleUser, deleteUser}
+const updateUser = async (user) =>{
+    try {
+        const {data} = await axios.put(BASE_URL+`api/users/${user.id}`, user)
+        alert('User Deleted!!')
+    } catch (error) {
+        return error;
+    }
+}
+
+export {getUsers, createUser, getSingleUser, deleteUser, updateUser}

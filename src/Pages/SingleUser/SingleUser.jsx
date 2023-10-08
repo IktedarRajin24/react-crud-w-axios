@@ -1,14 +1,14 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import { useQuery } from 'react-query';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import { getSingleUser } from '../../Services/usersApi';
 
 const SingleUser = () => {
-    const location = useLocation();
-    const path = location.pathname;
-    const id = path.slice(path.length-1 )
-    const {data, isLoading}= useQuery('user', ()=>getSingleUser(id))
+    const {userId} = useParams()
+    
+    const {data, isLoading}= useQuery('user', ()=>getSingleUser(userId))
+    console.log(userId);
     
     return (
         <div className='w-11/12 mx-auto bg-slate-200 mt-10 py-10'>

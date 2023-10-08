@@ -4,7 +4,6 @@ const TODOS_URL = import.meta.env.VITE_REACT_APP_BASE_URL_TODOS;
 const getTodos = async () =>{
     try {
         const response = await axios.get(`${TODOS_URL}todos`)
-        console.log(response.data.data)
         return response;
         
     } catch (error) {
@@ -42,7 +41,7 @@ const editTodo = async (data) =>{
 const deleteTodo = async (id) =>{
     try {
         const response = await axios.delete(`${TODOS_URL}todos/${id}`)
-        alert(response.message)
+        alert(response.data.message)
     } catch (error) {
         return error;
     }

@@ -1,14 +1,12 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import { getTodoById } from '../../Services/todosApi';
 
 const Todo = () => {
-    const location = useLocation();
-    const path = location.pathname;
-    const id = path.slice(7, path.length)
-    const {data, isLoading}= useQuery('todo', ()=>getTodoById(id))
+    const {todoId} = useParams()
+    const {data, isLoading}= useQuery('todo', ()=>getTodoById(todoId))
     const [todo, setTodo] = useState({})
     useEffect(()=>{
         data && setTodo(data.data.data)
